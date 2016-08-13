@@ -1,0 +1,128 @@
+#include <iostream>
+#include <conio.h>
+using namespace std;
+int digitos(int nro)
+{
+	int dig=0;
+	while (nro>0)
+	{
+		nro=nro/10;
+		dig++;
+	}
+	return (dig);
+}
+int sumatoriadigitos (int nro)
+{
+	int s=0,dig;
+	while (nro>0)
+	{
+		dig=nro%10;
+		nro=nro/10;
+		s=s+dig;
+	}
+	return (s);
+}
+int suma (int nro)
+{
+	int s,mayor,a,dig=0, aux;
+	aux=nro;
+	while (aux>0)
+	{
+		aux=aux/10;
+		dig++;
+	}
+	aux=nro;
+	mayor = aux / powl (10, (dig-1));
+	s=s+mayor;
+	for (int i=2;i<dig;i++)
+	{
+		a= aux / powl ( 10, dig-i);
+		a=a%10;
+		if (a>mayor)
+		{
+			mayor=a;
+			s=s+a;
+		}
+		else
+		{
+			s=s;
+		}
+		nro=nro/10;
+	}
+	return (s);
+}
+void main ()
+{
+	int opc,nro,caso1,caso2,caso3;
+	do
+	{
+		cout<<"----------------------MENU---------------------"<<endl;
+		cout<<"1) Contador de digitos de un numero"<<endl;
+		cout<<"2) Suma de digitos de un numero"<<endl;
+		cout<<"3) Suma de los 3 mayores digitos en un numero"<<endl;
+		cout<<"4) Salir del programa"<<endl;
+		cout<<"Ingrese la opcion que desea: ";
+		cin>>opc;
+		switch (opc)
+		{
+		case 1:
+			{
+				do
+				{
+					cout<<"ingrese un numero natural: ";
+					cin>>nro;
+					if (nro<1)
+					{
+						cout<<"Error... Ingrese un numero natural (Digite un numero mayor a 1)..."<<endl;
+					}
+				} while (nro<1);
+				caso1= digitos(nro);
+				cout<<"la cantidad de digitos del numero es: "<<caso1<<endl;
+				break;
+			}
+		case 2:
+			{
+				do
+				{
+					cout<<"ingrese un numero natural: ";
+					cin>>nro;
+					if (nro<1)
+					{
+						cout<<"Error... Ingrese un numero natural (Digite un numero mayor o igual a 1)..."<<endl;
+					}
+				} while (nro<1);
+				caso2= sumatoriadigitos(nro);
+				cout<<"la suma de los digitos del numero es: "<<caso2<<endl;
+				break;
+			}
+		case 3:
+			{
+				do
+				{
+					cout<<"ingrese un numero natural: ";
+					cin>>nro;
+					if (nro<1)
+					{
+						cout<<"Error... Ingrese un numero natural (Digite un numero mayor o igual a 1)..."<<endl;
+					}
+				} while (nro<1);
+				caso3=suma(nro);
+				cout<<"la suma de los tres mayores digitos de un numero es: "<<caso3<<endl;
+				break;
+			}
+		case 4:
+			{
+				cout<<"Saliendo..."<<endl;
+				break;
+			}
+		default :
+			{
+				cout<<"Error...Opcion invalida, digite otra opcion (Digite 1, 2 , 3 o 4)"<<endl;
+			}
+			
+		}
+	}while (opc!=4);
+	getch();
+}
+
+			
