@@ -1,3 +1,4 @@
+
 #include <iostream>
 #include <conio.h>
 using namespace std;
@@ -34,7 +35,7 @@ int suma (int nro)
 	aux=nro;
 	mayor = aux / powl (10, (dig-1));
 	s=s+mayor;
-	for (int i=2;i<dig;i++)
+	for (int i=2;i<=dig;i++)
 	{
 		a= aux / powl ( 10, dig-i);
 		a=a%10;
@@ -59,7 +60,7 @@ void main ()
 		cout<<"----------------------MENU---------------------"<<endl;
 		cout<<"1) Contador de digitos de un numero"<<endl;
 		cout<<"2) Suma de digitos de un numero"<<endl;
-		cout<<"3) Suma de los 3 mayores digitos en un numero"<<endl;
+		cout<<"3) Suma de los mayores digitos"<<endl;
 		cout<<"4) Salir del programa"<<endl;
 		cout<<"Ingrese la opcion que desea: ";
 		cin>>opc;
@@ -107,7 +108,7 @@ void main ()
 					}
 				} while (nro<1);
 				caso3=suma(nro);
-				cout<<"la suma de los tres mayores digitos de un numero es: "<<caso3<<endl;
+				cout<<"la suma de los mayores digitos con referencia al primer digito de un numero es: "<<caso3<<endl;
 				break;
 			}
 		case 4:
@@ -124,5 +125,3 @@ void main ()
 	}while (opc!=4);
 	getch();
 }
-
-			
