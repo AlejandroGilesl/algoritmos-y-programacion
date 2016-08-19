@@ -1,6 +1,6 @@
-
 #include <iostream>
 #include <conio.h>
+#include <math.h>
 using namespace std;
 int digitos(int nro)
 {
@@ -52,16 +52,103 @@ int suma (int nro)
 	}
 	return (s);
 }
+int invertir (int n)
+{
+	int s=0,d;
+	do
+	{
+		d=n%10;
+		s=s*10+d;
+		n=n/10;
+	} while (n>0);
+	return (s);
+}
+bool primo (int n)
+{
+	bool k=true;
+	for (int i=2;i<n;i++)
+	{
+		if (n%i==0)
+		{
+				k=false;
+		}
+			
+	}
+	return (k);
+}
+int sumaPrimo (int n)
+{
+	bool k;
+	int s=0,dig;
+	do
+	{
+		dig=n%10;
+		n=n/10;
+		k=primo(dig);
+		if (k==true)
+		{
+			s=s+dig;
+		}
+		else
+		{
+			s=s;
+		}
+	} while(n>0);
+	return (s);
+}
+int sumaPrimo1 (int n)
+{
+	bool k;
+	int s=0,dig;
+	do
+	{
+		dig=n%10;
+		n=n/10;
+		k=primo(dig);
+		if (k==false)
+		{
+			s=s*10+dig;
+		}
+		else
+		{
+			s=s;
+		}
+	} while(n>0);
+	s=invertir(s);
+	return (s);
+}
+int combinatoria (int n, int n1)
+{
+	int newnro,dig=0,aux=n1;
+	do
+	{
+		n1=n1/10;
+		dig++;
+	}while(n1>0);
+	n=n*powl(10,dig);
+	newnro=n+aux;
+	return (newnro);
+}
+bool verificacion (int n)
+{
+	int dig,
+
+
 void main ()
 {
-	int opc,nro,caso1,caso2,caso3;
+	int opc,nro,nro1,caso1,caso2,caso3,caso4,caso5,caso6,caso7;
 	do
 	{
 		cout<<"----------------------MENU---------------------"<<endl;
 		cout<<"1) Contador de digitos de un numero"<<endl;
 		cout<<"2) Suma de digitos de un numero"<<endl;
 		cout<<"3) Suma de los mayores digitos"<<endl;
-		cout<<"4) Salir del programa"<<endl;
+		cout<<"4) Invertir un numero"<<endl;
+		cout<<"5) Suma de digitos primos de un numero"<<endl;
+		cout<<"6) Nuevo numero sin digitos primos"<<endl;
+		cout<<"7) Concatenado de 2 numeros"<<endl;
+		cout<<"8) Verificacion de un numero ordenado ascendentemente
+		cout<<"0) Salir del programa"<<endl;
 		cout<<"Ingrese la opcion que desea: ";
 		cin>>opc;
 		switch (opc)
@@ -113,15 +200,89 @@ void main ()
 			}
 		case 4:
 			{
-				cout<<"Saliendo..."<<endl;
+				cout<<"ingrese un numero natural: ";
+					cin>>nro;
+					do
+					{
+						if (nro<1)
+						{
+						cout<<"Error... Ingrese un numero natural (Digite un numero mayor o igual a 1)..."<<endl;
+						}
+					}while (nro<1);
+				caso4=invertir(nro);
+				cout<<"el numero invertido es: "<<caso4<<endl;
+				break;
+			}
+		case 5:
+			{
+				do
+				{
+					cout<<"ingrese un numero natural: ";
+					cin>>nro;
+					if (nro<1)
+					{
+						cout<<"Error... Ingrese un numero natural (Digite un numero mayor o igual a 1)..."<<endl;
+					}
+				} while (nro<1);
+				caso5= sumaPrimo(nro);
+				cout<<"La suma de los digitos primos de un numero es: "<<caso5<<endl;
+				break;
+			}
+		case 6:
+			{
+				do
+				{
+					cout<<"ingrese un numero natural: ";
+					cin>>nro;
+					if (nro<1)
+					{
+						cout<<"Error... Ingrese un numero natural (Digite un numero mayor o igual a 1)..."<<endl;
+					}
+				} while (nro<1);
+				caso6= sumaPrimo1(nro);
+				cout<<"el nuevo numero sin digitos primos es: "<<caso6<<endl;
+				break;
+			}
+		case 7:
+			{
+				do
+				{
+					cout<<"ingrese el primer numero natural de la combinatoria: ";
+					cin>>nro;
+					if (nro<1)
+					{
+						cout<<"Error... Ingrese un numero natural (Digite un numero mayor o igual a 1)..."<<endl;
+					}
+				} while (nro<1);
+				do
+				{
+					cout<<"ingrese el segundo numero natural de la combinatoria: ";
+					cin>>nro1;
+					if (nro1<1)
+					{
+						cout<<"Error... Ingrese un numero natural (Digite un numero mayor o igual a 1)..."<<endl;
+					}
+				} while (nro1<1);
+				caso7=combinatoria(nro,nro1);
+				cout<<"El nuevo numero concatenado es: "<<caso7<<endl;
+				break;
+			}
+		case 0:
+			{
+				cout<<"Gracias..."<<endl;
 				break;
 			}
 		default :
 			{
-				cout<<"Error...Opcion invalida, digite otra opcion (Digite 1, 2 , 3 o 4)"<<endl;
+				cout<<"Error...Opcion invalida, digite otra opcion (Digite 1,2,3,4 o 5)"<<endl;
 			}
+			break;
 			
 		}
-	}while (opc!=4);
-	getch();
+		getch();
+		system ("cls");
+	}while(opc!=0);
+	
 }
+
+
