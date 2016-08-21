@@ -1,0 +1,30 @@
+#include <iostream>
+#include <conio.h>
+using namespace std;
+void fibonacci (int n)
+{
+	int aux=0,s=1,s1=0,st;
+	for (int i=0;i<n;i++)
+	{
+		if (i<2)
+		{
+			cout<<aux<<"-";
+			aux=aux+1;
+		}
+		else
+		{
+			st=s1+s;
+			cout<<st<<"-";
+			s1=s;
+			s=st;
+		}
+	}
+}
+void main ()
+{
+	int n;
+	cout<<"Serie de fibonacci, ingrese cuantos numeros de la serie desea ver: ";
+	cin>>n;
+	fibonacci(n);
+	getch();
+}
