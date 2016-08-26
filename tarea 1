@@ -25,7 +25,7 @@ int sumatoriadigitos (int nro)
 }
 int suma (int nro)
 {
-	int s,mayor,a,dig=0, aux;
+	int s=0,mayor,a,dig=0, aux;
 	aux=nro;
 	while (aux>0)
 	{
@@ -131,6 +131,7 @@ int combinatoria (int n, int n1)
 }
 bool verificacion (int n)
 {
+	bool k=true;
 	int aux=n,dig=0,band=0,mayor,nro;
 	do
 	{
@@ -139,11 +140,25 @@ bool verificacion (int n)
 	} while (n>0);
 	n=aux;
 	mayor= n / powl (10,dig-1);
-	for (int i=0;i<dig;i++)
+	for (int i=1;i<dig;i++)
+	{
+		nro= n / powl (10,dig-1-i);
+		nro=nro%10;
+		if (mayor>nro)
+		{
+			k=false;
+			i=dig;
+		}
+		mayor=nro;
+	}
+	return (k);
+}
+
 
 
 void main ()
 {
+	bool caso8;
 	int opc,nro,nro1,caso1,caso2,caso3,caso4,caso5,caso6,caso7;
 	do
 	{
@@ -155,7 +170,7 @@ void main ()
 		cout<<"5) Suma de digitos primos de un numero"<<endl;
 		cout<<"6) Nuevo numero sin digitos primos"<<endl;
 		cout<<"7) Concatenado de 2 numeros"<<endl;
-		cout<<"8) Verificacion de un numero ordenado ascendentemente
+		cout<<"8) Verificacion de un numero ordenado ascendentemente"<<endl;
 		cout<<"0) Salir del programa"<<endl;
 		cout<<"Ingrese la opcion que desea: ";
 		cin>>opc;
@@ -275,6 +290,30 @@ void main ()
 				cout<<"El nuevo numero concatenado es: "<<caso7<<endl;
 				break;
 			}
+		case 8: 
+			{
+				do
+				{
+					cout<<"ingrese un numero natural: ";
+					cin>>nro;
+					if (nro<1)
+					{
+						cout<<"Error... Ingrese un numero natural (Digite un numero mayor o igual a 1)..."<<endl;
+					}
+				} while (nro<1);
+				caso8=verificacion(nro);
+				cout<<"la veracidad de que el numero esta ordenado ascendentemente es: ";
+				if (caso8==true)
+				{
+					cout<<"Verdadero";
+				}
+				else
+				{
+					cout<<"falso";
+				}
+				break;
+			}
+
 		case 0:
 			{
 				cout<<"Gracias..."<<endl;
@@ -282,7 +321,7 @@ void main ()
 			}
 		default :
 			{
-				cout<<"Error...Opcion invalida, digite otra opcion (Digite 1,2,3,4 o 5)"<<endl;
+				cout<<"Error...Opcion invalida, digite otra opcion"<<endl;
 			}
 			break;
 			
@@ -292,5 +331,3 @@ void main ()
 	}while(opc!=0);
 	
 }
-
-
